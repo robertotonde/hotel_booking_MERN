@@ -1,20 +1,20 @@
-import Hotel from "../models/Hotel.js";
+import User from "../models/User.js";
 
 
-export const createHotel = async (req, res, next) => {
-  const newHotel = new Hotel(req.body);
+// export const createUser = async (req, res, next) => {
+//   const newUser = new User(req.body);
 
+//   try {
+//     const savedUser = await newUser.save();
+//     res.status(200).json(savedUser);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+
+export const updateUser = async (req, res, next) => {
   try {
-    const savedHotel = await newHotel.save();
-    res.status(200).json(savedHotel);
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const updateHotel = async (req, res, next) => {
-  try {
-    const updatedHotel = await Hotel.findByIdAndUpdate(
+    const updatedUser = await User.findByIdAndUpdate(
       req.params.id,
       {
         $set: req.body,
@@ -23,33 +23,33 @@ export const updateHotel = async (req, res, next) => {
         new: true,
       }
     );
-    res.status(200).json(updatedHotel);
+    res.status(200).json(updatedUser);
   } catch (error) {
     next(error);
   }
 };
-export const deleteHotel = async (req, res, next) => {
+export const deleteUser = async (req, res, next) => {
   try {
-    await Hotel.findByIdAndDelete(req.params.id);
-    res.status(200).json("hotel has been deleted ");
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const getHotelById = async (req, res, next) => {
-  try {
-    const hotel = await Hotel.findById(req.params.id);
-    res.status(200).json(hotel);
+    await User.findByIdAndDelete(req.params.id);
+    res.status(200).json("User has been deleted ");
   } catch (error) {
     next(error);
   }
 };
 
-export const getHotels = async (req, res, next) => {
+export const getUserById = async (req, res, next) => {
   try {
-    const hotels = await Hotel.find();
-    res.status(200).json(hotels);
+    const user = await User.findById(req.params.id);
+    res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getUsers = async (req, res, next) => {
+  try {
+    const users = await User.find();
+    res.status(200).json(users);
   } catch (error) {
     next(error);
   }
