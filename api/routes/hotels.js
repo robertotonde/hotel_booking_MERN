@@ -2,6 +2,7 @@ import express from "express";
 
 import { createError } from "../utils/error.js";
 import {
+  countByCity,
   createHotel,
   deleteHotel,
   getHotelById,
@@ -14,11 +15,11 @@ const router = express.Router();
 //CREATE
 router.post("/", verifyAdmin, createHotel);
 //UPDATE
-router.put("/:id",verifyAdmin, updateHotel);
+router.put("/:id", verifyAdmin, updateHotel);
 //DELETE
-router.delete("/:id",verifyAdmin, deleteHotel);
+router.delete("/:id", verifyAdmin, deleteHotel);
 //GET
-router.get("/:id", getHotelById);
+router.get("/find/:id", getHotelById);
 //GET ALL
 router.get(
   "/",
@@ -26,5 +27,7 @@ router.get(
   // const failed = true;
   // if (failed) return next(createError(401, "your not authnticated"));
 );
+router.get("/countByCity", countByCity);
+router.get("/countByType", getHotels);
 
 export default router;
