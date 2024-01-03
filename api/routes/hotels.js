@@ -3,6 +3,7 @@ import express from "express";
 import { createError } from "../utils/error.js";
 import {
   countByCity,
+  countByType,
   createHotel,
   deleteHotel,
   getHotelById,
@@ -28,6 +29,6 @@ router.get(
   // if (failed) return next(createError(401, "your not authnticated"));
 );
 router.get("/countByCity", countByCity);
-router.get("/countByType", getHotels);
+router.get("/countByType", countByType);
 
 export default router;
